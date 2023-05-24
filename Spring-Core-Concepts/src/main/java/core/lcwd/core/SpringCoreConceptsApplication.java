@@ -6,25 +6,34 @@ import core.lcwd.core.coupling.Dog;
 import core.lcwd.core.coupling.Person;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+//@ComponentScan(basePackages = {"",""}) // we can provide package name here
 public class SpringCoreConceptsApplication {
 
 	public static void main(String[] args) {
 
-		Animal animal = new Dog();
-		Animal animal2 = new Cat();
-		Person p = new Person(animal);
-		Person p2 = new Person(animal2);
-		p.playWithAnimal();
-		p2.playWithAnimal();
+		// about the bean, using @Components
+		// about the dependencies, @Autowire
+		// where to scan for beans
 
+		//com.lcwd.core.couple
 		/*
-		now we resolve the issue of tight coupling. but still we are
-		creating object our self and inject in a class. it can we can
-		be done by spring MVC. checkout out next commit.
+		@SpringBootApplication will scapn only core package of main class[ core.lcwd.core ]
+		will not scan test package.
+		if we want to scan test package also we need to tell about it also to
+		spring using @ComponentScan
 		 */
-		SpringApplication.run(SpringCoreConceptsApplication.class, args);
+		ApplicationContext context = SpringApplication.run(SpringCoreConceptsApplication.class, args);// it will return the object of creating beans
+		// now we can get all the beans from ApplicationContext[ context ]
+
+		Person personBean = context.getBean(Person.class);
+		personBean.playWithAnimal();
+
+
 	}
 
 }
