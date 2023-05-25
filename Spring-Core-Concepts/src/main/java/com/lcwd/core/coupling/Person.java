@@ -10,18 +10,15 @@ public class Person {
 
 
     // Field Injection
+    @Autowired
     Animal animal;
+    @Autowired
     Student student;
-
-
-
-
-
-
 
     public void playWithAnimal(){
         //using animal
         animal.play();
         student.detail();
     }
+    
 }
