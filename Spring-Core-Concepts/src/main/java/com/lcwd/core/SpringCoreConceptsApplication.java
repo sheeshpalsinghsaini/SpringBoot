@@ -17,18 +17,8 @@ public class SpringCoreConceptsApplication {
 		ApplicationContext context = SpringApplication.run(SpringCoreConceptsApplication.class, args);
 		Person personBean = context.getBean(Person.class);
 		personBean.playWithAnimal();
+		System.out.println(personBean);
 
-		//---------------------
-
-		Test testBean = context.getBean(Test.class);
-		testBean.testing();
-		
-		//--------------------- get the bean qualifier name
-		Animal catBean = context.getBean("cat", Animal.class);
-		catBean.play();
-		Animal dogBean = context.getBean("dog", Animal.class);
-		dogBean.play();
-		
 
 	}
 
@@ -36,32 +26,25 @@ public class SpringCoreConceptsApplication {
 
 /*
 
-Removing Bean Conflict using @Qualifier
+--------------------- Types of Injection ----------------------------
 
-When we are declaring a class as bean using @Component at that time we can provide the name of
-bean in "@Component("dog")". 	: this bean name is 'dog' now
-if we don't want to given name in @component then we can use @Qualifier("dog") and can give name
-here. it is also same above.
+	Different ways of Dependency Injection
 
+		1. Constructor based Dependency Injection
+				@Autowired
+				public Student(args){
 
-when we are auto wire bean at that time we need to specify which bean we want to use.
-
-like in the Person bean we use
-
-	@Qualifier("cat") // now spring boot will inject only cat bean in Person class.
-
-
-
-----------------------------------------
-if you are using constructor then use Qualifier in constructor
-
-		@Autowired  // constructor autowired
-		public Person( @Qualifier("dog") Animal animal ) {
+				}
+		2. Setter based Dependency Injection
+				private Animal animal;
+				@Autowired
+				public void setAnimal(Animal animal){
 				this.animal = animal;
 				}
+		3. Field or Property-based Dependency Injection
+				@Autowired
+				private Animal animal;
 
----------------------------------------
-we can also get the bean from context using qualifier name
 
 
  */

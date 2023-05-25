@@ -2,7 +2,7 @@ package com.lcwd.core.coupling;
 
 import org.springframework.stereotype.Component;
 
-@Component("cat")
+@Component
 //@Primary
 public class Cat implements Animal{
     @Override
