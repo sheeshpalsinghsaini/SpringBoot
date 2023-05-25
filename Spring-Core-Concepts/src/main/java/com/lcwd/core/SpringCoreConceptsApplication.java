@@ -1,5 +1,6 @@
 package com.lcwd.core;
 
+import com.lcwd.core.coupling.Animal;
 import com.lcwd.core.coupling.Person;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,20 +22,46 @@ public class SpringCoreConceptsApplication {
 
 		Test testBean = context.getBean(Test.class);
 		testBean.testing();
+		
+		//--------------------- get the bean qualifier name
+		Animal catBean = context.getBean("cat", Animal.class);
+		catBean.play();
+		Animal dogBean = context.getBean("dog", Animal.class);
+		dogBean.play();
+		
 
 	}
 
 }
 
 /*
-when we create two beans of interface and try to inject in project at that time
-spring will found two beans. but it's required one. so it will rise an exception.
 
-like in this case we have Cat and Dog beans which we are using in Person.
+Removing Bean Conflict using @Qualifier
 
-To specify any one to run that one only so for that we will use @Primary annotation
-on that beans. so spring will give higher priority to that bean.
+When we are declaring a class as bean using @Component at that time we can provide the name of
+bean in "@Component("dog")". 	: this bean name is 'dog' now
+if we don't want to given name in @component then we can use @Qualifier("dog") and can give name
+here. it is also same above.
 
-@Primary on Dog bean : it will be injected now.
-@Primary on Cat bean : now Cat will be injected.
+
+when we are auto wire bean at that time we need to specify which bean we want to use.
+
+like in the Person bean we use
+
+	@Qualifier("cat") // now spring boot will inject only cat bean in Person class.
+
+
+
+----------------------------------------
+if you are using constructor then use Qualifier in constructor
+
+		@Autowired  // constructor autowired
+		public Person( @Qualifier("dog") Animal animal ) {
+				this.animal = animal;
+				}
+
+---------------------------------------
+we can also get the bean from context using qualifier name
+
+
  */
