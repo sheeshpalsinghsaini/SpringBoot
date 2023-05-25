@@ -14,11 +14,15 @@ public class Person {
     Animal animal;
     @Autowired
     Student student;
+    @Autowired
+    @Qualifier("samosa2")
+    private Samosa samosa;
 
     public void playWithAnimal(){
         //using animal
         animal.play();
         student.detail();
+        samosa.eat();
     }
-    
+
 }

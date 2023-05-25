@@ -2,10 +2,13 @@ package com.lcwd.core;
 
 import com.lcwd.core.coupling.Animal;
 import com.lcwd.core.coupling.Person;
+import com.lcwd.core.coupling.Samosa;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Primary;
 import test.Test;
 
 @SpringBootApplication
@@ -22,29 +25,18 @@ public class SpringCoreConceptsApplication {
 
 	}
 
+
+
+
 }
 
 /*
 
---------------------- Types of Injection ----------------------------
+--------------------- Another way of Creating Bean ----------------------------
 
-	Different ways of Dependency Injection
+	we can declare Bean name inside it like @Bean(name = "samosa1")
 
-		1. Constructor based Dependency Injection
-				@Autowired
-				public Student(args){
-
-				}
-		2. Setter based Dependency Injection
-				private Animal animal;
-				@Autowired
-				public void setAnimal(Animal animal){
-				this.animal = animal;
-				}
-		3. Field or Property-based Dependency Injection
-				@Autowired
-				private Animal animal;
-
+	if we don't want to use @Primary then we can use Qualifier at injection time.
 
 
  */
