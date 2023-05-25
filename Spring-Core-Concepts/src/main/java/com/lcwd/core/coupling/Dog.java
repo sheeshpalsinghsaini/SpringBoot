@@ -1,8 +1,10 @@
-package core.lcwd.core.coupling;
+package com.lcwd.core.coupling;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
+@Primary
 public class Dog implements Animal{
     @Override
     public void play() {

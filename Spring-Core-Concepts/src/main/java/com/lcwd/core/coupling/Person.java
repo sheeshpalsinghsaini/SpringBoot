@@ -1,4 +1,4 @@
-package core.lcwd.core.coupling;
+package com.lcwd.core.coupling;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,7 @@ public class Person {
 
 
     @Autowired
-    Animal animal; // dependencies injection by spring
-
-//    public Person(Animal animal) { // dependencies injection manual
-//        this.animal = animal;
-//    }
+    Animal animal;
 
     public void playWithAnimal(){
         //using animal
